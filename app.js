@@ -16,6 +16,7 @@ const checkJwt = require('./src/middlewares/checkJwt.js');
 const auth = require('./src/auth.js')
 const region = require('./src/regions.js')
 const departement = require('./src/departements.js')
+const france = require('./src/france.js')
 
 
 app.use(compression());
@@ -46,6 +47,8 @@ app.use('/auth', auth);
 app.use('/region', region);
 // Router /departement
 app.use('/departement', departement);
+// Router /france
+app.use('/france', france);
 
 // Error handler
 app.use(function(err, req, res, next) {
