@@ -25,13 +25,13 @@ router.post('/login', function (req, res) {
         // error will be an Error if one occurred during the query
         if (error) {
             return next(error);
-          }
+        }
         
         if (results.length == 1) {
             bcrypt.compare(req.body.password, results[0].password).then(function(compare) {
                 if (compare) {
                     fs.readFile(process.env.JWT_PRIVATE_KEY, 'utf8', function(err, data) {
-                        jwt.sign({ foo: 'bar' }, { key: data, passphrase: process.env.JWT_PRIVATE_KEY_PASSPHRASE }, { expiresIn: process.env.JWT_EXPIRES_IN, algorithm: process.env.JWT_ALGORITHM }, function(err, token) {
+                        jwt.sign({ foo: 'bar', value: 'toto' }, { key: data, passphrase: process.env.JWT_PRIVATE_KEY_PASSPHRASE }, { expiresIn: process.env.JWT_EXPIRES_IN, algorithm: process.env.JWT_ALGORITHM }, function(err, token) {
                             // TODO : manage err
                             res.json({token: token});
                         });
